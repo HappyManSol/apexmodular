@@ -8,7 +8,7 @@ export function Hero() {
   return (
     <section
       id="product"
-      className="relative flex min-h-[calc(100vh-5rem)] items-center overflow-hidden"
+      className="relative flex min-h-[calc(100vh-6rem)] items-center overflow-hidden"
     >
       <div className="absolute inset-0 bg-background" />
       <Image

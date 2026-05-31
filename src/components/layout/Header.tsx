@@ -54,22 +54,22 @@ export function Header() {
 
   return (
     <header className="fixed top-0 z-50 w-full border-b border-border bg-[#141313]/95 backdrop-blur-[6px]">
-      <div className="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-4 sm:px-8 lg:px-16">
+      <div className="mx-auto flex h-24 max-w-[1440px] items-stretch justify-between px-4 sm:px-8 lg:px-16">
         <Link
           href="/"
-          className="relative h-20 w-[min(72vw,280px)] shrink-0 sm:w-[340px] lg:w-[460px]"
+          className="relative flex shrink-0 items-center self-stretch overflow-hidden"
         >
           <Image
             src={assets.navLogo}
             alt="APEX MODULAR PLATES"
-            fill
-            sizes="(max-width: 640px) 280px, (max-width: 1024px) 340px, 460px"
-            className="object-contain object-left"
+            width={1536}
+            height={1024}
             priority
+            className="h-24 w-auto max-w-none origin-left scale-[1.65] object-contain object-left"
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
+        <nav className="hidden items-center gap-8 self-center md:flex" aria-label="Main">
           {navLinks.map((link) => {
             const isActive = activeSection === link.sectionId;
             return (
@@ -89,13 +89,13 @@ export function Header() {
           })}
         </nav>
 
-        <ButtonLink href="/#partnerships" size="sm" className="hidden md:inline-flex">
+        <ButtonLink href="/#partnerships" size="sm" className="hidden self-center md:inline-flex">
           Get Started
         </ButtonLink>
 
         <button
           type="button"
-          className="p-2 md:hidden"
+          className="self-center p-2 md:hidden"
           aria-expanded={mobileOpen}
           aria-label="Toggle menu"
           onClick={() => setMobileOpen((open) => !open)}
