@@ -10,9 +10,19 @@ export function PlateAnimationVideo() {
     const video = videoRef.current;
     if (!video) return;
 
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) {
+      video.pause();
+      video.removeAttribute("autoplay");
+      return;
+    }
+
     video.load();
     void video.play().catch(() => {
-      // Autoplay blocked until user interaction — controls allow manual play
+      // Autoplay blocked until user interaction
     });
   }, []);
 
@@ -24,11 +34,11 @@ export function PlateAnimationVideo() {
       loop
       muted
       playsInline
-      preload="auto"
+      preload="metadata"
+      poster="/images/figma/select-mass.png"
       aria-label="APEX modular plate system animation"
     >
       <source src={assets.plateAnimation} type="video/mp4" />
-      <source src={assets.plateAnimationMov} type="video/quicktime" />
     </video>
   );
 }

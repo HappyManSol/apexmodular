@@ -52,15 +52,15 @@ export function Hero() {
           <div className="flex flex-col gap-4 pt-4 sm:flex-row">
             <Link
               href="#benefits"
-              className="bg-button-primary px-8 py-4 text-center font-display text-base font-bold uppercase tracking-widest text-button-primary-text"
+              className="btn-primary bg-button-primary px-8 py-4 text-center font-display text-base font-bold uppercase tracking-widest text-button-primary-text"
             >
               Explore the System
             </Link>
             <Link
               href="#safety"
-              className="flex items-center justify-center gap-2 border border-[#444748] px-8 py-4 font-display text-base font-bold uppercase tracking-widest text-foreground"
+              className="btn-secondary flex items-center justify-center gap-2 border border-[#444748] px-8 py-4 font-display text-base font-bold uppercase tracking-widest text-foreground"
             >
-              <Image src={assets.playIcon} alt="" width={20} height={20} />
+              <Image src={assets.playIcon} alt="" width={20} height={20} aria-hidden />
               Watch Specs
             </Link>
           </div>
@@ -71,7 +71,14 @@ export function Hero() {
         <span className="font-mono text-xs font-bold uppercase tracking-widest text-foreground-dim">
           Scroll to Engage
         </span>
-        <Image src={assets.scrollIndicator} alt="" width={11} height={11} />
+        <Image
+          src={assets.scrollIndicator}
+          alt=""
+          width={11}
+          height={11}
+          aria-hidden
+          className="scroll-indicator"
+        />
       </div>
     </section>
   );

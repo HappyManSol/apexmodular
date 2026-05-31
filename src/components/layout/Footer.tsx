@@ -3,8 +3,6 @@ import Link from "next/link";
 import { assets } from "@/lib/assets";
 
 const footerLinks = [
-  { label: "Privacy Policy", href: "#" },
-  { label: "Terms of Service", href: "#" },
   { label: "Engineering Specs", href: "#safety" },
   { label: "Contact Us", href: "#partnerships" },
 ];
@@ -29,9 +27,15 @@ export function Footer() {
           <p className="font-mono text-xs font-bold uppercase tracking-widest text-foreground-label">
             Engineered for precision. Built for heavy load.
           </p>
+          <a
+            href="mailto:partnerships@apexmodularplates.com"
+            className="inline-block font-mono text-xs font-bold uppercase tracking-widest text-foreground-dim transition-colors hover:text-foreground"
+          >
+            partnerships@apexmodularplates.com
+          </a>
         </div>
 
-        <nav className="grid grid-cols-2 gap-x-12 gap-y-4 sm:grid-cols-3">
+        <nav className="flex flex-col gap-4 sm:flex-row sm:gap-12">
           {footerLinks.map((link) => (
             <Link
               key={link.label}
@@ -45,7 +49,7 @@ export function Footer() {
 
         <div className="text-right lg:text-right">
           <p className="text-xs font-bold uppercase tracking-wide text-foreground-label">
-            © 2024 APEX MODULAR SYSTEMS.
+            © 2026 APEX MODULAR SYSTEMS.
           </p>
           <p className="text-xs uppercase tracking-wide text-foreground-dim">
             All patents pending.

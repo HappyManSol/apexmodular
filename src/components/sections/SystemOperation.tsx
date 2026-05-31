@@ -10,6 +10,7 @@ const steps = [
     description:
       "Choose the required mass by selecting the corresponding color-coded concentric rings. Each ring represents a calibrated weight increment.",
     image: assets.selectMass,
+    imageAlt: "Selecting color-coded weight rings on the modular plate",
     imageClassName: "object-contain object-top p-3",
   },
   {
@@ -20,6 +21,7 @@ const steps = [
     description:
       "Engage the patented radial locking mechanism. A tactile 'click' confirms the sections are secured to the master plate and barbell sleeve.",
     image: assets.stepLock,
+    imageAlt: "Locking modular plate sections into the master hub",
     imageClassName: "object-cover",
   },
   {
@@ -30,6 +32,7 @@ const steps = [
     description:
       "Perform your lift with confidence. The unified mass behaves identically to a solid iron plate, with zero rattle or shift during explosive movements.",
     image: assets.stepLift,
+    imageAlt: "Athlete lifting with secured modular Olympic plates",
     imageClassName: "object-cover",
   },
 ];
@@ -62,7 +65,7 @@ export function SystemOperation() {
                 <div className="relative m-6 h-48 overflow-hidden border border-border bg-surface-raised">
                   <Image
                     src={step.image}
-                    alt=""
+                    alt={step.imageAlt}
                     fill
                     className={step.imageClassName ?? "object-cover"}
                   />

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { assets } from "@/lib/assets";
 
 const navLinks = [
@@ -14,6 +14,43 @@ const navLinks = [
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState(navLinks[0].href);
+
+  useEffect(() => {
+    const sectionIds = navLinks.map((link) => link.href.slice(1));
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => section !== null);
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (visible[0]?.target.id) {
+          setActiveSection(`#${visible[0].target.id}`);
+        }
+      },
+      { rootMargin: "-25% 0px -55% 0px", threshold: [0, 0.25, 0.5] },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMobileOpen(false);
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [mobileOpen]);
 
   return (
     <header className="fixed top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-md">
@@ -32,24 +69,28 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
-          {navLinks.map((link, i) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`font-mono text-xs font-bold uppercase tracking-widest transition-colors hover:text-foreground ${
-                i === 0
-                  ? "border-b-2 border-[#c8c6c5] pb-1.5 text-[#c8c6c5]"
-                  : "text-foreground-label"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={isActive ? "page" : undefined}
+                className={`font-mono text-xs font-bold uppercase tracking-widest transition-colors hover:text-foreground ${
+                  isActive
+                    ? "border-b-2 border-[#c8c6c5] pb-1.5 text-[#c8c6c5]"
+                    : "text-foreground-label"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <Link
           href="#partnerships"
-          className="hidden bg-button-primary px-6 py-3 font-display text-sm font-bold uppercase tracking-widest text-button-primary-text md:inline-flex"
+          className="btn-primary hidden bg-button-primary px-6 py-3 font-display text-sm font-bold uppercase tracking-widest text-button-primary-text md:inline-flex"
         >
           Get Started
         </Link>
@@ -59,7 +100,7 @@ export function Header() {
           className="p-2 md:hidden"
           aria-expanded={mobileOpen}
           aria-label="Toggle menu"
-          onClick={() => setMobileOpen((o) => !o)}
+          onClick={() => setMobileOpen((open) => !open)}
         >
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             {mobileOpen ? (
@@ -72,21 +113,27 @@ export function Header() {
       </div>
 
       {mobileOpen && (
-        <nav className="border-t border-border px-4 py-4 md:hidden">
+        <nav className="border-t border-border px-4 py-4 md:hidden" aria-label="Mobile">
           <div className="flex flex-col gap-3">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-mono text-xs font-bold uppercase tracking-widest text-foreground-label"
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`font-mono text-xs font-bold uppercase tracking-widest ${
+                    isActive ? "text-foreground" : "text-foreground-label"
+                  }`}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
             <Link
               href="#partnerships"
-              className="mt-2 bg-button-primary px-6 py-3 text-center font-display text-sm font-bold uppercase tracking-widest text-button-primary-text"
+              className="btn-primary mt-2 bg-button-primary px-6 py-3 text-center font-display text-sm font-bold uppercase tracking-widest text-button-primary-text"
               onClick={() => setMobileOpen(false)}
             >
               Get Started
