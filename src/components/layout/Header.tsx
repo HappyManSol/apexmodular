@@ -55,17 +55,14 @@ export function Header() {
   return (
     <header className="fixed top-0 z-50 w-full border-b border-border bg-[#141313]/95 backdrop-blur-[6px]">
       <div className="mx-auto flex h-24 max-w-[1440px] items-stretch justify-between px-4 sm:px-8 lg:px-16">
-        <Link
-          href="/"
-          className="relative flex shrink-0 items-center self-stretch overflow-hidden"
-        >
+        <Link href="/" className="flex shrink-0 items-center self-stretch">
           <Image
             src={assets.navLogo}
             alt="APEX MODULAR PLATES"
             width={1536}
             height={1024}
             priority
-            className="h-24 w-auto max-w-none origin-left scale-[1.65] object-contain object-left"
+            className="h-24 w-auto object-contain object-left"
           />
         </Link>
 
