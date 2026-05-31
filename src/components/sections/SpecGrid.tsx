@@ -80,12 +80,7 @@ export function SpecGrid() {
                   {row.icon && (
                     <Image src={row.icon} alt="" width={11} height={14} />
                   )}
-                  <div>
-                    <p className="font-semibold">{row.label}</p>
-                    {row.sublabel && (
-                      <p className="text-xs text-foreground-dim">{row.sublabel}</p>
-                    )}
-                  </div>
+                  <p className="font-semibold">{row.label}</p>
                 </div>
                 <div className="border-l border-border p-4 font-mono text-base text-foreground-muted">
                   {row.value}
