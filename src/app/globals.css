@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+:root {
+  --background: #141313;
+  --foreground: #e5e2e1;
+  --foreground-muted: #c6c6c6;
+  --foreground-dim: #8e9192;
+  --foreground-label: #c4c7c7;
+  --surface: #201f1f;
+  --surface-raised: #1c1b1b;
+  --surface-darker: #0e0e0e;
+  --border: rgba(68, 71, 72, 0.2);
+  --border-strong: rgba(68, 71, 72, 0.5);
+  --accent-red: #d32f2f;
+  --accent-yellow: #fbc02d;
+  --accent-green: #388e3c;
+  --accent-blue: #1976d2;
+  --button-primary: #e5e2e1;
+  --button-primary-text: #141313;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-dim: var(--foreground-dim);
+  --color-foreground-label: var(--foreground-label);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-darker: var(--surface-darker);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent-red: var(--accent-red);
+  --color-accent-yellow: var(--accent-yellow);
+  --color-accent-green: var(--accent-green);
+  --color-accent-blue: var(--accent-blue);
+  --color-button-primary: var(--button-primary);
+  --color-button-primary-text: var(--button-primary-text);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-montserrat);
+  --font-mono: var(--font-jetbrains);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
