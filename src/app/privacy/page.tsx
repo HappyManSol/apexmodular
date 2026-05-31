@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { ButtonLink } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | APEX MODULAR",
@@ -111,12 +111,9 @@ export default function PrivacyPage() {
         </section>
       </div>
 
-      <Link
-        href="/"
-        className="btn-secondary mt-12 inline-block border border-border-strong px-6 py-3 font-mono text-xs font-bold uppercase tracking-widest text-foreground-label"
-      >
+      <ButtonLink href="/" variant="secondary" size="sm" className="mt-12">
         ← Back to Home
-      </Link>
+      </ButtonLink>
     </article>
   );
 }

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { assets } from "@/lib/assets";
+import { ButtonLink } from "@/components/ui/Button";
 
 const navLinks = [
   { label: "Product", href: "/#product", sectionId: "product" },
@@ -54,17 +55,15 @@ export function Header() {
   return (
     <header className="fixed top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur-md">
       <div className="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-4 sm:px-8 lg:px-16">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex shrink-0 items-center">
           <Image
-            src={assets.logo}
-            alt="APEX MODULAR"
-            width={40}
-            height={40}
-            className="opacity-80"
+            src={assets.navLogo}
+            alt="APEX MODULAR PLATES"
+            width={1024}
+            height={682}
+            priority
+            className="h-9 w-auto sm:h-10"
           />
-          <span className="font-display text-2xl font-black tracking-tight">
-            APEX MODULAR
-          </span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
@@ -87,12 +86,9 @@ export function Header() {
           })}
         </nav>
 
-        <Link
-          href="/#partnerships"
-          className="btn-primary hidden bg-button-primary px-6 py-3 font-display text-sm font-bold uppercase tracking-widest text-button-primary-text md:inline-flex"
-        >
+        <ButtonLink href="/#partnerships" size="sm" className="hidden md:inline-flex">
           Get Started
-        </Link>
+        </ButtonLink>
 
         <button
           type="button"
@@ -130,13 +126,14 @@ export function Header() {
                 </Link>
               );
             })}
-            <Link
+            <ButtonLink
               href="/#partnerships"
-              className="btn-primary mt-2 bg-button-primary px-6 py-3 text-center font-display text-sm font-bold uppercase tracking-widest text-button-primary-text"
+              size="sm"
+              className="mt-2 w-full"
               onClick={() => setMobileOpen(false)}
             >
               Get Started
-            </Link>
+            </ButtonLink>
           </div>
         </nav>
       )}

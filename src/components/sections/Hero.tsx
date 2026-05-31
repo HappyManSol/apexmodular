@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import { assets, colors } from "@/lib/assets";
+import { ButtonLink } from "@/components/ui/Button";
 
 const plateColors = [colors.red, colors.yellow, colors.green, colors.blue];
 
@@ -50,19 +50,18 @@ export function Hero() {
           </p>
 
           <div className="flex flex-col gap-4 pt-4 sm:flex-row">
-            <Link
-              href="#benefits"
-              className="btn-primary bg-button-primary px-8 py-4 text-center font-display text-base font-bold uppercase tracking-widest text-button-primary-text"
-            >
+            <ButtonLink href="#benefits" size="lg" showArrow>
               Explore the System
-            </Link>
-            <Link
+            </ButtonLink>
+            <ButtonLink
               href="#safety"
-              className="btn-secondary flex items-center justify-center gap-2 border border-[#444748] px-8 py-4 font-display text-base font-bold uppercase tracking-widest text-foreground"
+              variant="secondary"
+              size="lg"
+              className="w-full sm:w-auto"
             >
               <Image src={assets.playIcon} alt="" width={20} height={20} aria-hidden />
               Watch Specs
-            </Link>
+            </ButtonLink>
           </div>
         </div>
       </div>

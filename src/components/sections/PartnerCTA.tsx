@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useState } from "react";
+import { Button } from "@/components/ui/Button";
 
 const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID;
 
@@ -123,13 +124,9 @@ export function PartnerCTA() {
                 </p>
               )}
             </div>
-            <button
-              type="submit"
-              disabled={submitting}
-              className="btn-primary bg-button-primary px-8 py-4 font-display text-sm font-bold uppercase tracking-widest text-button-primary-text disabled:cursor-not-allowed disabled:opacity-60"
-            >
+            <Button type="submit" disabled={submitting} className="w-full sm:w-auto">
               {submitting ? "Sending…" : "Request Dealer Kit"}
-            </button>
+            </Button>
           </form>
         )}
 

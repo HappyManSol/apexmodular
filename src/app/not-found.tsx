@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ButtonLink } from "@/components/ui/Button";
 
 export default function NotFound() {
   return (
@@ -13,12 +13,9 @@ export default function NotFound() {
         The page you&apos;re looking for doesn&apos;t exist or has been moved. Head
         back to explore the modular plate system.
       </p>
-      <Link
-        href="/"
-        className="btn-primary mt-10 bg-button-primary px-8 py-4 font-display text-sm font-bold uppercase tracking-widest text-button-primary-text"
-      >
+      <ButtonLink href="/" size="md" showArrow className="mt-10">
         Back to Home
-      </Link>
+      </ButtonLink>
     </section>
   );
 }
