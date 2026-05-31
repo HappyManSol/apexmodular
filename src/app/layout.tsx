@@ -107,7 +107,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         <Header />
-        <main id="main-content" className="flex-1 pt-24">
+        <main id="main-content" className="flex-1 pt-20">
           {children}
         </main>
         <Footer />

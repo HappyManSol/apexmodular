@@ -53,20 +53,23 @@ export function Header() {
   }, [mobileOpen]);
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-border bg-[#141313]/95 backdrop-blur-[6px]">
-      <div className="mx-auto flex h-24 max-w-[1440px] items-stretch justify-between px-4 sm:px-8 lg:px-16">
-        <Link href="/" className="flex shrink-0 items-center self-stretch">
+    <header className="fixed top-0 z-50 w-full overflow-hidden border-b border-border bg-[#141313]/95 backdrop-blur-[6px]">
+      <div className="mx-auto flex h-20 max-w-[1440px] items-center gap-6 px-4 py-2 sm:px-8 lg:gap-[178px] lg:px-16">
+        <Link
+          href="/"
+          className="relative h-[254px] w-[min(48vw,220px)] shrink-0 sm:w-[280px] lg:w-[381px]"
+        >
           <Image
             src={assets.navLogo}
             alt="APEX MODULAR PLATES"
-            width={1536}
-            height={1024}
+            fill
+            sizes="(max-width: 640px) 220px, (max-width: 1024px) 280px, 381px"
             priority
-            className="h-24 w-auto object-contain object-left"
+            className="object-cover object-left"
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 self-center md:flex" aria-label="Main">
+        <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
           {navLinks.map((link) => {
             const isActive = activeSection === link.sectionId;
             return (
@@ -74,10 +77,10 @@ export function Header() {
                 key={link.sectionId}
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
-                className={`font-mono text-xs font-bold uppercase tracking-widest transition-colors hover:text-foreground ${
+                className={`font-mono text-xs font-bold uppercase tracking-[0.1em] transition-colors hover:text-foreground ${
                   isActive
                     ? "border-b-2 border-[#c8c6c5] pb-1.5 text-[#c8c6c5]"
-                    : "text-foreground-label"
+                    : "text-[#c4c7c7]"
                 }`}
               >
                 {link.label}
@@ -86,13 +89,16 @@ export function Header() {
           })}
         </nav>
 
-        <ButtonLink href="/#partnerships" size="sm" className="hidden self-center md:inline-flex">
+        <Link
+          href="/#partnerships"
+          className="ml-auto hidden shrink-0 border border-[#e5e2e1] bg-[#e5e2e1] px-[25px] py-[13px] font-display text-sm font-bold uppercase tracking-[0.1em] text-[#141313] md:inline-flex"
+        >
           Get Started
-        </ButtonLink>
+        </Link>
 
         <button
           type="button"
-          className="self-center p-2 md:hidden"
+          className="ml-auto p-2 md:hidden"
           aria-expanded={mobileOpen}
           aria-label="Toggle menu"
           onClick={() => setMobileOpen((open) => !open)}

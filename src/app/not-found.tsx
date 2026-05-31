@@ -2,7 +2,7 @@ import { ButtonLink } from "@/components/ui/Button";
 
 export default function NotFound() {
   return (
-    <section className="flex min-h-[calc(100vh-6rem)] flex-col items-center justify-center px-4 py-20 text-center sm:px-8">
+    <section className="flex min-h-[calc(100vh-5rem)] flex-col items-center justify-center px-4 py-20 text-center sm:px-8">
       <p className="font-mono text-xs font-bold uppercase tracking-widest text-accent-red">
         Error 404
       </p>
