@@ -3,8 +3,9 @@ import Link from "next/link";
 import { assets } from "@/lib/assets";
 
 const footerLinks = [
-  { label: "Engineering Specs", href: "#safety" },
-  { label: "Contact Us", href: "#partnerships" },
+  { label: "Engineering Specs", href: "/#safety" },
+  { label: "Contact Us", href: "/#partnerships" },
+  { label: "Privacy Policy", href: "/privacy" },
 ];
 
 export function Footer() {

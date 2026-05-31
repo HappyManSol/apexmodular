@@ -15,7 +15,7 @@ export function Hero() {
         src={assets.heroBg}
         alt="APEX modular Olympic plates in a smoky gym environment"
         fill
-        unoptimized
+        sizes="100vw"
         className="object-cover object-[75%_center] sm:object-right"
         priority
       />

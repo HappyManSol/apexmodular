@@ -19,7 +19,6 @@ function ProductImagePanel({
         src={src}
         alt={alt}
         fill
-        unoptimized
         sizes="(max-width: 1024px) 100vw, 760px"
         className={imageClassName}
       />

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID;
@@ -130,6 +131,19 @@ export function PartnerCTA() {
               {submitting ? "Sending…" : "Request Dealer Kit"}
             </button>
           </form>
+        )}
+
+        {!submitted && (
+          <p className="mt-4 text-center text-xs text-foreground-dim">
+            By submitting, you agree to our{" "}
+            <Link
+              href="/privacy"
+              className="text-foreground-label underline-offset-4 hover:underline"
+            >
+              Privacy Policy
+            </Link>
+            .
+          </p>
         )}
       </div>
     </section>

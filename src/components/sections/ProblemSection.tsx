@@ -60,7 +60,7 @@ export function ProblemSection() {
               src={assets.eliminateClutter}
               alt="Before and after comparison of traditional plate clutter versus Apex modular wall-mounted system"
               fill
-              unoptimized
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover object-center"
             />
           </div>

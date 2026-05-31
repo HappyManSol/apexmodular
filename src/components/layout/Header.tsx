@@ -6,20 +6,19 @@ import { useEffect, useState } from "react";
 import { assets } from "@/lib/assets";
 
 const navLinks = [
-  { label: "Product", href: "#product" },
-  { label: "Benefits", href: "#benefits" },
-  { label: "Safety", href: "#safety" },
-  { label: "Partnerships", href: "#partnerships" },
+  { label: "Product", href: "/#product", sectionId: "product" },
+  { label: "Benefits", href: "/#benefits", sectionId: "benefits" },
+  { label: "Safety", href: "/#safety", sectionId: "safety" },
+  { label: "Partnerships", href: "/#partnerships", sectionId: "partnerships" },
 ];
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState(navLinks[0].href);
+  const [activeSection, setActiveSection] = useState(navLinks[0].sectionId);
 
   useEffect(() => {
-    const sectionIds = navLinks.map((link) => link.href.slice(1));
-    const sections = sectionIds
-      .map((id) => document.getElementById(id))
+    const sections = navLinks
+      .map((link) => document.getElementById(link.sectionId))
       .filter((section): section is HTMLElement => section !== null);
 
     if (sections.length === 0) return;
@@ -31,7 +30,7 @@ export function Header() {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
         if (visible[0]?.target.id) {
-          setActiveSection(`#${visible[0].target.id}`);
+          setActiveSection(visible[0].target.id);
         }
       },
       { rootMargin: "-25% 0px -55% 0px", threshold: [0, 0.25, 0.5] },
@@ -70,10 +69,10 @@ export function Header() {
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
           {navLinks.map((link) => {
-            const isActive = activeSection === link.href;
+            const isActive = activeSection === link.sectionId;
             return (
               <Link
-                key={link.href}
+                key={link.sectionId}
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
                 className={`font-mono text-xs font-bold uppercase tracking-widest transition-colors hover:text-foreground ${
@@ -89,7 +88,7 @@ export function Header() {
         </nav>
 
         <Link
-          href="#partnerships"
+          href="/#partnerships"
           className="btn-primary hidden bg-button-primary px-6 py-3 font-display text-sm font-bold uppercase tracking-widest text-button-primary-text md:inline-flex"
         >
           Get Started
@@ -116,10 +115,10 @@ export function Header() {
         <nav className="border-t border-border px-4 py-4 md:hidden" aria-label="Mobile">
           <div className="flex flex-col gap-3">
             {navLinks.map((link) => {
-              const isActive = activeSection === link.href;
+              const isActive = activeSection === link.sectionId;
               return (
                 <Link
-                  key={link.href}
+                  key={link.sectionId}
                   href={link.href}
                   aria-current={isActive ? "page" : undefined}
                   className={`font-mono text-xs font-bold uppercase tracking-widest ${
@@ -132,7 +131,7 @@ export function Header() {
               );
             })}
             <Link
-              href="#partnerships"
+              href="/#partnerships"
               className="btn-primary mt-2 bg-button-primary px-6 py-3 text-center font-display text-sm font-bold uppercase tracking-widest text-button-primary-text"
               onClick={() => setMobileOpen(false)}
             >

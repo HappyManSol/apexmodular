@@ -67,6 +67,7 @@ export function SystemOperation() {
                     src={step.image}
                     alt={step.imageAlt}
                     fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     className={step.imageClassName ?? "object-cover"}
                   />
                 </div>
