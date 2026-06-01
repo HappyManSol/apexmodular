@@ -1,7 +1,7 @@
 export const assets = {
   logo: "/images/figma/logo.png",
   navLogo: "/images/figma/apex-logo-nav.png",
-  footerLogo: "/images/apex-footer-logo.png",
+  footerLogo: "/images/figma/apex-logo-footer.png",
   heroBg: "/images/figma/hero-smokey-plates.png",
   explodedView: "/images/figma/exploded-view.png",
   sideProfile: "/images/figma/side-profile.png",
