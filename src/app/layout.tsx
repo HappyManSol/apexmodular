@@ -25,11 +25,16 @@ const jetbrainsMono = JetBrains_Mono({
 
 const siteUrl = "https://apexmodularplates.com";
 
+const siteTitle = "APEX MODULAR | The Evolution of the Olympic Plate.";
+const siteDescription =
+  "One precision-engineered plate. Multiple weighted sections. Infinite possibilities for your home gym. The future of heavy lifting is modular.";
+const shareDescription =
+  "Patented modular Olympic plate system engineered for precision. Partner with facility owners, gym manufacturers, and distributors worldwide.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "APEX MODULAR | The Evolution of the Olympic Plate",
-  description:
-    "One precision-engineered plate. Multiple weighted sections. Infinite possibilities for your home gym. The future of heavy lifting is modular.",
+  title: siteTitle,
+  description: siteDescription,
   keywords: [
     "modular Olympic plates",
     "home gym",
@@ -39,28 +44,17 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "APEX MODULAR" }],
   openGraph: {
-    title: "APEX MODULAR | The Evolution of the Olympic Plate",
-    description:
-      "Patented modular Olympic plate system. Partner with facility owners, gym manufacturers, and distributors.",
+    title: siteTitle,
+    description: shareDescription,
     type: "website",
     locale: "en_US",
     siteName: "APEX MODULAR",
     url: siteUrl,
-    images: [
-      {
-        url: "/images/figma/hero-smokey-plates.png",
-        width: 1200,
-        height: 630,
-        alt: "APEX modular Olympic plates in a smoky gym environment",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "APEX MODULAR | The Evolution of the Olympic Plate",
-    description:
-      "Patented modular Olympic plate system. One plate, multiple weight sections, up to 50 lb.",
-    images: ["/images/figma/hero-smokey-plates.png"],
+    title: siteTitle,
+    description: shareDescription,
   },
   icons: {
     icon: "/images/figma/logo.png",
