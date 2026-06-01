@@ -13,18 +13,15 @@ export function Footer() {
     <footer className="border-t border-border bg-surface-darker">
       <div className="mx-auto flex max-w-[1440px] flex-col gap-12 px-4 py-20 sm:px-8 lg:flex-row lg:justify-between lg:px-16">
         <div className="max-w-xs space-y-4">
-          <div className="flex items-center gap-2">
+          <Link href="/" className="inline-block">
             <Image
-              src={assets.logo}
-              alt="APEX MODULAR"
-              width={32}
-              height={32}
-              className="opacity-80"
+              src={assets.footerLogo}
+              alt="APEX MODULAR PLATES"
+              width={1024}
+              height={682}
+              className="h-14 w-auto"
             />
-            <span className="font-display text-2xl font-black tracking-tight">
-              APEX MODULAR
-            </span>
-          </div>
+          </Link>
           <p className="font-mono text-xs font-bold uppercase tracking-widest text-foreground-label">
             Engineered for precision. Built for heavy load.
           </p>
