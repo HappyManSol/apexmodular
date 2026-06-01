@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     images: [
       {
-        url: "/images/og-share.png?v=3",
+        url: "/images/og-share.png?v=4",
         width: 1200,
         height: 630,
         alt: "APEX MODULAR — The Evolution of the Olympic Plate",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteTitle,
     description: shareDescription,
-    images: ["/images/og-share.png?v=3"],
+    images: ["/images/og-share.png?v=4"],
   },
   icons: {
     icon: "/images/figma/logo.png",
