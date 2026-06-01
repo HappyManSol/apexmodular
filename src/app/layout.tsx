@@ -50,11 +50,20 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "APEX MODULAR",
     url: siteUrl,
+    images: [
+      {
+        url: "/images/og-share.png?v=3",
+        width: 1200,
+        height: 630,
+        alt: "APEX MODULAR — The Evolution of the Olympic Plate",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteTitle,
     description: shareDescription,
+    images: ["/images/og-share.png?v=3"],
   },
   icons: {
     icon: "/images/figma/logo.png",
