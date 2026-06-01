@@ -6,6 +6,16 @@ import { Button } from "@/components/ui/Button";
 
 const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID;
 
+const partnerTypes = [
+  { value: "facility", label: "Facility owner / gym operator" },
+  { value: "manufacturer", label: "Manufacturer / OEM" },
+  { value: "distributor", label: "Distributor / retailer" },
+  { value: "other", label: "Investor / other" },
+] as const;
+
+const fieldClassName =
+  "w-full border border-border-strong bg-surface-raised px-4 py-4 font-mono text-base uppercase text-foreground placeholder:text-foreground-dim focus:border-foreground-dim focus:outline-none disabled:opacity-60";
+
 export function PartnerCTA() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -17,6 +27,13 @@ export function PartnerCTA() {
 
     const formData = new FormData(event.currentTarget);
     const email = String(formData.get("email") ?? "").trim();
+    const partnerType = String(formData.get("partner_type") ?? "").trim();
+    const company = String(formData.get("company") ?? "").trim();
+
+    if (!partnerType) {
+      setError("Please select a partner type.");
+      return;
+    }
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setError("Please enter a valid commercial email address.");
@@ -27,6 +44,9 @@ export function PartnerCTA() {
       setError("Form is not configured yet. Email partnerships@apexmodularplates.com directly.");
       return;
     }
+
+    const partnerLabel =
+      partnerTypes.find((type) => type.value === partnerType)?.label ?? partnerType;
 
     setSubmitting(true);
 
@@ -39,6 +59,8 @@ export function PartnerCTA() {
         },
         body: JSON.stringify({
           email,
+          partner_type: partnerLabel,
+          company: company || undefined,
           _subject: "APEX MODULAR — Dealer Kit Request",
         }),
       });
@@ -97,12 +119,48 @@ export function PartnerCTA() {
             </button>
           </div>
         ) : (
-          <form
-            className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-center"
-            onSubmit={handleSubmit}
-            noValidate
-          >
-            <div className="min-w-0 flex-1 sm:min-w-[300px]">
+          <form className="mt-8 flex flex-col gap-4" onSubmit={handleSubmit} noValidate>
+            <div>
+              <label htmlFor="partner_type" className="sr-only">
+                Partner type
+              </label>
+              <select
+                id="partner_type"
+                name="partner_type"
+                required
+                disabled={submitting}
+                defaultValue=""
+                aria-invalid={error ? true : undefined}
+                aria-describedby={error ? "form-error" : undefined}
+                className={`${fieldClassName} appearance-none bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%228%22 fill=%22none%22%3E%3Cpath stroke=%22%238e9192%22 stroke-width=%221.5%22 d=%22M1 1.5 6 6.5 11 1.5%22/%3E%3C/svg%3E')] bg-[length:12px_8px] bg-[right_1rem_center] bg-no-repeat pr-10`}
+              >
+                <option value="" disabled>
+                  Select partner type
+                </option>
+                {partnerTypes.map((type) => (
+                  <option key={type.value} value={type.value}>
+                    {type.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="company" className="sr-only">
+                Company name
+              </label>
+              <input
+                id="company"
+                name="company"
+                type="text"
+                autoComplete="organization"
+                disabled={submitting}
+                placeholder="Company name (optional)"
+                className={fieldClassName}
+              />
+            </div>
+
+            <div>
               <label htmlFor="email" className="sr-only">
                 Commercial email
               </label>
@@ -113,18 +171,20 @@ export function PartnerCTA() {
                 autoComplete="email"
                 required
                 disabled={submitting}
-                placeholder="ENTER COMMERCIAL EMAIL"
+                placeholder="Enter commercial email"
                 aria-invalid={error ? true : undefined}
-                aria-describedby={error ? "email-error" : undefined}
-                className="w-full border border-border-strong bg-surface-raised px-4 py-4 font-mono text-base uppercase text-foreground placeholder:text-foreground-dim focus:border-foreground-dim focus:outline-none disabled:opacity-60"
+                aria-describedby={error ? "form-error" : undefined}
+                className={fieldClassName}
               />
-              {error && (
-                <p id="email-error" className="mt-2 text-sm text-accent-red">
-                  {error}
-                </p>
-              )}
             </div>
-            <Button type="submit" disabled={submitting} className="w-full sm:w-auto">
+
+            {error && (
+              <p id="form-error" className="text-sm text-accent-red">
+                {error}
+              </p>
+            )}
+
+            <Button type="submit" disabled={submitting} className="w-full">
               {submitting ? "Sending…" : "Request Dealer Kit"}
             </Button>
           </form>
